@@ -15,6 +15,8 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
+	"strings"
+
 	"io"
 	"os"
 )
@@ -30,6 +32,28 @@ func Base64StdEncode(s string) string {
 func Base64StdDecode(s string) string {
 	b, _ := base64.StdEncoding.DecodeString(s)
 	return string(b)
+}
+
+func Md5[T string | []byte](data T, short bool, upper bool) string {
+	res := md5.Sum([]byte(data))
+	hashString := ""
+	if short {
+		hashString = hex.EncodeToString(res[4:12])
+	} else {
+		hashString = hex.EncodeToString(res[:])
+	}
+	if upper {
+		hashString = strings.ToUpper(hashString)
+	}
+	return hashString
+
+	// if strutil.IsString(data) {
+	// 	return Md5String(data.(string))
+
+	// }
+
+	// return Md5Byte(data.([]byte))
+
 }
 
 // Md5String return the md5 value of string.
