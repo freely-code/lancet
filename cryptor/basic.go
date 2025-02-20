@@ -47,13 +47,6 @@ func Md5[T string | []byte](data T, short bool, upper bool) string {
 	}
 	return hashString
 
-	// if strutil.IsString(data) {
-	// 	return Md5String(data.(string))
-
-	// }
-
-	// return Md5Byte(data.([]byte))
-
 }
 
 // Md5String return the md5 value of string.
