@@ -48,6 +48,7 @@ import (
 -   [ToRawStdBase64](#ToRawStdBase64)
 -   [ToRawUrlBase64](#ToRawUrlBase64)
 -   [ToBigInt](#ToBigInt)
+-   [JsonTo](#JsonTo)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1178,5 +1179,45 @@ func main() {
     fmt.Println(bigInt)
     // Output:
     // 9876543210
+}
+```
+### <span id="JsonTo">ToBigInt</span>
+
+<p>将字符串或字节数据JSON转成任何数据类型</p>
+
+<b>函数签名:<span style="float:right;display:inline-block;"></span></b>
+
+```go
+func JsonTo[T string | []byte](data T, target any) error 
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+func main() {
+	data := `{"a": "hi", "b": 2, "c": {"A": "hello", "B": 3}}`
+	target := &map[string]any{}
+	if error := convertor.JsonTo(data, target); error != nil {
+		fmt.Println(error)
+	}
+	fmt.Println(*target)
+
+	*target = nil
+	if error := convertor.JsonTo([]byte(data), target); error != nil {
+		fmt.Println(error)
+	}
+	fmt.Println(*target)
+
+
+	// Output:
+	// map[a:hi b:2 c:map[A:hello B:3]]
+	// map[a:hi b:2 c:map[A:hello B:3]]
 }
 ```

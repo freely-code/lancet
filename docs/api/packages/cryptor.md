@@ -6,8 +6,8 @@ cryptor 包包含数据加密和解密功能。支持 base64, md5, hmac, hash, a
 
 ## 源码:
 
--   [https://github.com/duke-git/lancet/blob/main/cryptor/basic.go](https://github.com/duke-git/lancet/blob/main/cryptor/basic.go)
--   [https://github.com/duke-git/lancet/blob/main/cryptor/crypto.go](https://github.com/duke-git/lancet/blob/main/cryptor/crypto.go)
+- [https://github.com/duke-git/lancet/blob/main/cryptor/basic.go](https://github.com/duke-git/lancet/blob/main/cryptor/basic.go)
+- [https://github.com/duke-git/lancet/blob/main/cryptor/crypto.go](https://github.com/duke-git/lancet/blob/main/cryptor/crypto.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -23,56 +23,56 @@ import (
 
 ## 目录
 
--   [AesEcbEncrypt](#AesEcbEncrypt)
--   [AesEcbDecrypt](#AesEcbDecrypt)
--   [AesCbcEncrypt](#AesCbcEncrypt)
--   [AesCbcDecrypt](#AesCbcDecrypt)
--   [AesCtrCrypt](#AesCtrCrypt)
--   [AesCfbEncrypt](#AesCfbEncrypt)
--   [AesCfbDecrypt](#AesCfbDecrypt)
--   [AesOfbEncrypt](#AesOfbEncrypt)
--   [AesOfbDecrypt](#AesOfbDecrypt)
--   [AesGcmEncrypt](#AesGcmEncrypt)
--   [AesGcmDecrypt](#AesGcmDecrypt)
--   [Base64StdEncode](#Base64StdEncode)
--   [Base64StdDecode](#Base64StdDecode)
--   [DesEcbEncrypt](#DesEcbEncrypt)
--   [DesEcbDecrypt](#DesEcbDecrypt)
--   [DesCbcEncrypt](#DesCbcEncrypt)
--   [DesCbcDecrypt](#DesCbcDecrypt)
--   [DesCtrCrypt](#DesCtrCrypt)
--   [DesCfbEncrypt](#DesCfbEncrypt)
--   [DesCfbDecrypt](#DesCfbDecrypt)
--   [DesOfbEncrypt](#DesOfbEncrypt)
--   [DesOfbDecrypt](#DesOfbDecrypt)
--   [HmacMd5](#HmacMd5)
--   [HmacMd5WithBase64](#HmacMd5WithBase64)
--   [HmacSha1](#HmacSha1)
--   [HmacSha1WithBase64](#HmacSha1WithBase64)
--   [HmacSha256](#HmacSha256)
--   [HmacSha256WithBase64](#HmacSha256WithBase64)
--   [HmacSha512](#HmacSha512)
--   [HmacSha512WithBase64](#HmacSha512WithBase64)
--   [Md5String](#Md5String)
--   [Md5StringWithBase64](#Md5StringWithBase64)
--   [Md5Byte](#Md5Byte)
--   [Md5ByteWithBase64](#Md5ByteWithBase64)
--   [Md5File](#Md5File)
--   [Sha1](#Sha1)
--   [Sha1WithBase64](#Sha1WithBase64)
--   [Sha256](#Sha256)
--   [Sha256WithBase64](#Sha256WithBase64)
--   [Sha512](#Sha512)
--   [Sha512WithBase64](#Sha512WithBase64)
--   [GenerateRsaKey](#GenerateRsaKey)
--   [RsaEncrypt](#RsaEncrypt)
--   [RsaDecrypt](#RsaDecrypt)
--   [GenerateRsaKeyPair](#GenerateRsaKeyPair)
--   [RsaEncryptOAEP](#RsaEncryptOAEP)
--   [RsaDecryptOAEP](#RsaDecryptOAEP)
--   [RsaSign](#RsaSign)
--   [RsaVerifySign](#RsaVerifySign)
-
+- [AesEcbEncrypt](#AesEcbEncrypt)
+- [AesEcbDecrypt](#AesEcbDecrypt)
+- [AesCbcEncrypt](#AesCbcEncrypt)
+- [AesCbcDecrypt](#AesCbcDecrypt)
+- [AesCtrCrypt](#AesCtrCrypt)
+- [AesCfbEncrypt](#AesCfbEncrypt)
+- [AesCfbDecrypt](#AesCfbDecrypt)
+- [AesOfbEncrypt](#AesOfbEncrypt)
+- [AesOfbDecrypt](#AesOfbDecrypt)
+- [AesGcmEncrypt](#AesGcmEncrypt)
+- [AesGcmDecrypt](#AesGcmDecrypt)
+- [Base64StdEncode](#Base64StdEncode)
+- [Base64StdDecode](#Base64StdDecode)
+- [DesEcbEncrypt](#DesEcbEncrypt)
+- [DesEcbDecrypt](#DesEcbDecrypt)
+- [DesCbcEncrypt](#DesCbcEncrypt)
+- [DesCbcDecrypt](#DesCbcDecrypt)
+- [DesCtrCrypt](#DesCtrCrypt)
+- [DesCfbEncrypt](#DesCfbEncrypt)
+- [DesCfbDecrypt](#DesCfbDecrypt)
+- [DesOfbEncrypt](#DesOfbEncrypt)
+- [DesOfbDecrypt](#DesOfbDecrypt)
+- [HmacMd5](#HmacMd5)
+- [HmacMd5WithBase64](#HmacMd5WithBase64)
+- [HmacSha1](#HmacSha1)
+- [HmacSha1WithBase64](#HmacSha1WithBase64)
+- [HmacSha256](#HmacSha256)
+- [HmacSha256WithBase64](#HmacSha256WithBase64)
+- [HmacSha512](#HmacSha512)
+- [HmacSha512WithBase64](#HmacSha512WithBase64)
+- [Md5](#Md5)
+- [Md5String](#Md5String)
+- [Md5StringWithBase64](#Md5StringWithBase64)
+- [Md5Byte](#Md5Byte)
+- [Md5ByteWithBase64](#Md5ByteWithBase64)
+- [Md5File](#Md5File)
+- [Sha1](#Sha1)
+- [Sha1WithBase64](#Sha1WithBase64)
+- [Sha256](#Sha256)
+- [Sha256WithBase64](#Sha256WithBase64)
+- [Sha512](#Sha512)
+- [Sha512WithBase64](#Sha512WithBase64)
+- [GenerateRsaKey](#GenerateRsaKey)
+- [RsaEncrypt](#RsaEncrypt)
+- [RsaDecrypt](#RsaDecrypt)
+- [GenerateRsaKeyPair](#GenerateRsaKeyPair)
+- [RsaEncryptOAEP](#RsaEncryptOAEP)
+- [RsaDecryptOAEP](#RsaDecryptOAEP)
+- [RsaSign](#RsaSign)
+- [RsaVerifySign](#RsaVerifySign)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1071,6 +1071,41 @@ func main() {
 
     // Output:
     // 3Y8SkKndI9NU4lJtmi6c6M///dN8syCADRxsE9Lvw2Mog3ahlsVFja9T+OGqa0Wm2FYwPVwKIGS/+XhYYdSM/A==
+}
+```
+
+### <span id="Md5">Md5</span>
+
+<p>获取通用md5值。</p>
+
+<b>函数签名:</b>
+
+```go
+func Md5[T string | []byte](data T, short bool, upper bool) string
+```
+
+<b>示例:<span style="float:right;display:inline-block;"></span></b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/cryptor"
+)
+
+func main() {
+    str := "hello"
+
+    md5Str := cryptor.Md5(str)
+    fmt.Println(md5Str)
+
+    md5Str := cryptor.Md5([]byte(str))
+    fmt.Println(md5Str)
+
+    // Output:
+    // 5d41402abc4b2a76b9719d911017c592
+    // 5d41402abc4b2a76b9719d911017c592
 }
 ```
 

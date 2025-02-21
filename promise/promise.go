@@ -7,9 +7,8 @@ package promise
 import (
 	"errors"
 	"fmt"
+	"project/lancet/internal"
 	"sync"
-
-	"github.com/duke-git/lancet/v2/internal"
 )
 
 // Promise represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
