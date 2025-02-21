@@ -24,13 +24,6 @@ import (
 	"golang.org/x/text/transform"
 )
 
-func JsonTo[T string | []byte](data T, target any) error {
-	if err := json.Unmarshal([]byte(data), &target); err != nil {
-		return err
-	}
-	return nil
-}
-
 // ToBool convert string to boolean.
 // Play: https://go.dev/play/p/ARht2WnGdIN
 func ToBool(s string) (bool, error) {
@@ -519,4 +512,17 @@ func ToBigInt[T any](v T) (*big.Int, error) {
 	}
 
 	return result, nil
+}
+
+func JsonTo[T string | []byte](data T, target any) error {
+	if err := json.Unmarshal([]byte(data), &target); err != nil {
+		return err
+	}
+	return nil
+}
+func ToStruct[T string | []byte](data T, target any) error {
+	if err := json.Unmarshal([]byte(data), &target); err != nil { // 尝试将 JSON 数据反序列化到目标结构体
+		return err // 如果失败，返回错误信息
+	}
+	return nil // 返回 nil 表示成功
 }

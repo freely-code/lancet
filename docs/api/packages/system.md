@@ -1,12 +1,12 @@
 # System
 
-system 包含 os, 运行time, shell command 相关函数。
+system 包含 os, 运行 time, shell command 相关函数。
 
 <div STYLE="page-break-after: always;"></div>
 
 ## 源码:
 
--   [https://github.com/duke-git/lancet/blob/main/system/os.go](https://github.com/duke-git/lancet/blob/main/system/os.go)
+- [https://github.com/duke-git/lancet/blob/main/system/os.go](https://github.com/duke-git/lancet/blob/main/system/os.go)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -22,20 +22,22 @@ import (
 
 ## 目录
 
--   [IsWindows](#IsWindows)
--   [IsLinux](#IsLinux)
--   [IsMac](#IsMac)
--   [GetOsEnv](#GetOsEnv)
--   [SetOsEnv](#SetOsEnv)
--   [RemoveOsEnv](#RemoveOsEnv)
--   [CompareOsEnv](#CompareOsEnv)
--   [ExecCommand](#ExecCommand)
--   [GetOsBits](#GetOsBits)
--   [StartProcess](#StartProcess)
--   [StopProcess](#StopProcess)
--   [KillProcess](#KillProcess)
--   [GetProcessInfo](#GetProcessInfo)
-
+- [IsWindows](#IsWindows)
+- [IsLinux](#IsLinux)
+- [IsMac](#IsMac)
+- [GetOsEnv](#GetOsEnv)
+- [SetOsEnv](#SetOsEnv)
+- [RemoveOsEnv](#RemoveOsEnv)
+- [CompareOsEnv](#CompareOsEnv)
+- [ExecCommand](#ExecCommand)
+- [GetOsBits](#GetOsBits)
+- [StartProcess](#StartProcess)
+- [StopProcess](#StopProcess)
+- [KillProcess](#KillProcess)
+- [GetProcessInfo](#GetProcessInfo)
+- [Port](#Port)
+- [GetCodeInfo](#GetCodeInfo)
+- [Print](#Print)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -440,5 +442,82 @@ func main() {
     }
 
     fmt.Println(processInfo)
+}
+```
+
+### <span id="Port">Port</span>
+
+<p>获取可用端口或检测端口是否可用</p>
+
+<b>函数签名:</b>
+
+```go
+func Port(port ...int) any
+```
+
+<b>示例:<span style="float:right;display:inline-block"></span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    if system.Port(255){
+    fmt.Println("255端口可用")
+    }else{
+        fmt.Println("255端口不可用")
+    }
+
+    port:=system.Port()
+    fmt.Println("自动获取到的可用端口为:%d",port)
+}
+```
+
+### <span id="GetCodeInfo">GetCodeInfo</span>
+
+<p>获取当前代码行号和执行文件路径</p>
+
+<b>函数签名:</b>
+
+```go
+func GetCodeInfo(skip int) (string, int)
+```
+
+<b>示例:<span style="float:right;display:inline-block"></span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    filePath, lineNum := system.GetCodeInfo()
+    fmt.Println(filePath, lineNum)
+}
+```
+
+### <span id="Print">Print</span>
+
+<p>打印当前行号和执行文件路径,并格式化打印信息</p>
+
+<b>函数签名:</b>
+
+```go
+func Print(msg string)
+```
+
+<b>示例:<span style="float:right;display:inline-block"></span></b>
+
+```go
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/system"
+)
+
+func main() {
+    system.Print("这是一条调试信息")
 }
 ```

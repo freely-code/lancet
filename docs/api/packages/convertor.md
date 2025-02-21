@@ -49,6 +49,7 @@ import (
 -   [ToRawUrlBase64](#ToRawUrlBase64)
 -   [ToBigInt](#ToBigInt)
 -   [JsonTo](#JsonTo)
+-   [ToStruct](#ToStruct)
 
 <div STYLE="page-break-after: always;"></div>
 
@@ -1219,5 +1220,52 @@ func main() {
 	// Output:
 	// map[a:hi b:2 c:map[A:hello B:3]]
 	// map[a:hi b:2 c:map[A:hello B:3]]
+}
+```
+### <span id="ToStruct">ToBigInt</span>
+
+<p>将任何数据转换成目标结构体</p>
+
+<b>函数签名:<span style="float:right;display:inline-block;"></span></b>
+
+```go
+func ToStruct[T string | []byte](data T, target any) error
+```
+
+<b>示例:</b>
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/duke-git/lancet/v2/convertor"
+)
+
+type target struct {
+	A string
+	B int
+	C struct {
+		A string
+		B int
+	}
+}
+
+func main() {
+	data := `{"a": "hi", "b": 2, "c": {"A": "hello", "B": 3}}`
+	target := &target{}
+	if error := convertor.ToStruct(data, target); error != nil {
+		fmt.Println(error)
+	}
+	fmt.Println(*target)
+
+	// *target = &target{}
+	if error := convertor.ToStruct([]byte(data), target); error != nil {
+		fmt.Println(error)
+	}
+	fmt.Println(*target)
+	//Output
+	// 	{hi 2 {hello 3}}
+	// {hi 2 {hello 3}}
 }
 ```

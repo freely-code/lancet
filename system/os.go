@@ -7,8 +7,10 @@ package system
 import (
 	"bytes"
 	"fmt"
+	"net"
 	"os"
 	"os/exec"
+	"project/lancet/condition"
 	"runtime"
 	"strconv"
 	"strings"
@@ -321,4 +323,58 @@ func getNetworkConnections(pid int) (string, error) {
 	}
 
 	return string(output), nil
+}
+
+// Port 函数用于检查端口是否可用或查找一个未被占用的端口。
+// 当传入一个端口号时，检查该端口是否可用，返回布尔值表示是否可用。
+// 当未传入端口号时，会尝试查找一个未被占用的端口，返回找到的未占用端口的端口号。
+// 注意：此函数的返回值为 interface{} 类型，使用时需要进行类型断言。
+//
+// 参数：
+// - port（可选）：一个或多个端口号，使用可变参数接收。
+//
+// 返回值：
+// - interface{}：如果传入端口号，返回布尔值表示端口是否可用；如果未传入端口号，返回找到的未占用端口的端口号。
+func Port(port ...int) any {
+	// 当传入一个端口号时，检查该端口是否可用
+	if len(port) == 1 {
+		// 尝试使用 net.Dial 连接到指定端口
+		conn, err := net.Dial("tcp", fmt.Sprintf("localhost:%d", port[0]))
+		// 如果连接失败，说明端口未被占用，返回 true
+		if err != nil {
+			return true
+		}
+		// 关闭连接
+		conn.Close()
+		// 端口已被占用，返回 false
+		return false
+	}
+
+	// 当未传入端口号时，查找一个未被占用的端口
+	for index := 1; index < 65535; index++ {
+		// 尝试使用 net.Dial 连接到当前索引对应的端口
+		conn, err := net.Dial("tcp", fmt.Sprintf("localhost:%d", index))
+		// 如果连接失败，说明该端口未被占用，返回该端口号
+		if err != nil {
+			return index
+		}
+		// 关闭连接
+		conn.Close()
+	}
+	// 未找到未被占用的端口，返回 nil
+	return nil
+}
+
+func GetCodeInfo(skip int) (string, int) {
+	// skip 参数为 1 表示跳过当前函数，获取调用该函数的位置信息
+	if !condition.Bool(skip) {
+		skip = 2
+	}
+	_, file, line, _ := runtime.Caller(skip) //括号里1为当前函数 2为调用者函数
+	return file, line
+}
+
+func Print(msg string) {
+	file, line := GetCodeInfo()
+	fmt.Printf("----\n文件:%v 第%v行处\n%v\n----\n\n", file, line, msg)
 }
