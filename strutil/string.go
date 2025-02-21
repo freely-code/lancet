@@ -756,3 +756,42 @@ func ExtractContent(s, start, end string) []string {
 
 	return result
 }
+
+func Replace(source, oldText, newText string, count int, caseSensitive bool) string {
+	if !caseSensitive {
+		// 如果不区分大小写，则将源文本和旧文本都转换为小写进行匹配
+		lowerSource := strings.ToLower(source)
+		lowerOldText := strings.ToLower(oldText)
+
+		var result strings.Builder
+		start := 0
+		replaced := 0
+
+		for {
+			index := strings.Index(lowerSource[start:], lowerOldText)
+			if index == -1 || (count > 0 && replaced >= count) {
+				break
+			}
+			index += start // 调整索引到原始字符串的位置
+
+			// 将未匹配的部分添加到结果中
+			result.WriteString(source[start:index])
+			// 添加替换后的文本
+			result.WriteString(newText)
+
+			// 更新起始位置
+			start = index + len(oldText)
+			replaced++
+		}
+
+		// 添加剩余部分
+		result.WriteString(source[start:])
+		return result.String()
+	}
+
+	// 如果区分大小写，直接使用 strings.Replace
+	if count < 1 {
+		count = -1 // -1 表示替换所有匹配项
+	}
+	return strings.Replace(source, oldText, newText, count)
+}

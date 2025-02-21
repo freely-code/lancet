@@ -24,6 +24,13 @@ import (
 	"golang.org/x/text/transform"
 )
 
+func JsonTo[T string | []byte](data T, target any) error {
+	if err := json.Unmarshal([]byte(data), &target); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ToBool convert string to boolean.
 // Play: https://go.dev/play/p/ARht2WnGdIN
 func ToBool(s string) (bool, error) {
