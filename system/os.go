@@ -374,7 +374,7 @@ func GetCodeInfo(skip int) (string, int) {
 	return file, line
 }
 
-func Print(msg string) {
+func Print(msg... any) {
 	file, line := GetCodeInfo(2)
 	fmt.Printf("----\n文件:%v 第%v行处\n%v\n----\n\n", file, line, msg)
 }
